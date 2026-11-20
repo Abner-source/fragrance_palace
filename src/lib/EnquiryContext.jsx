@@ -11,7 +11,8 @@ const EnquiryContext = createContext(null);
 
 export function enquiryText(product, ml) {
   if (!product) return CONFIG.generalEnquiry;
-  const label = [product.brand, product.name, product.type].filter(Boolean).join(" ") + (ml ? ` (${ml}ml)` : "");
+  const brand = product.name?.startsWith(product.brand) ? null : product.brand;
+  const label = [brand, product.name, product.type].filter(Boolean).join(" ") + (ml ? ` (${ml}ml)` : "");
   return CONFIG.enquiryTemplate.replace("{product}", label);
 }
 

@@ -1,4 +1,5 @@
 import CONFIG from "../data/config.js";
+import { MF_BRAND, MF_PRODUCTS } from "../data/mindfreak.js";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -24,12 +25,17 @@ export const SORTS = [
 ];
 
 /** Builds the lookup structures once after the catalogue JSON loads. */
-export function indexCatalogue({ brands, products }) {
+export function indexCatalogue(json) {
+  // Mind Freak (our own house) is defined in src/data/mindfreak.js and listed right after Afnan
+  const brands = [...json.brands];
+  const at = brands.findIndex((b) => b.slug === "afnan");
+  brands.splice(at < 0 ? brands.length : at + 1, 0, { ...MF_BRAND, count: MF_PRODUCTS.length });
+  const products = [...json.products, ...MF_PRODUCTS];
   const brandBySlug = Object.fromEntries(brands.map((b) => [b.slug, b]));
   for (const p of products) {
     const b = brandBySlug[p.brandSlug];
     p.category = b.category;
-    p.image = p.noImage ? null : imageUrl(p);
+    p.image = p.img || (p.noImage ? null : imageUrl(p));
     p._search = fold(
       [p.brand, b.aka, p.name, p.collection, p.type, p.year, p.gender,
         ...(p.notes ? [...p.notes.top, ...p.notes.heart, ...p.notes.base] : [])].join(" ")

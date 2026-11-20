@@ -119,7 +119,6 @@ function Header({ menuOpen, onToggleMenu }) {
             <Link to="/catalogue?gender=Men">For Him</Link>
             <Link to="/catalogue?gender=Women">For Her</Link>
             <NavLink to="/body-care">Body Care</NavLink>
-            <NavLink to="/mind-freak">Mind Freak</NavLink>
             <NavLink to="/visit">Visit Us</NavLink>
           </nav>
 
@@ -237,7 +236,6 @@ function MobileMenu() {
         <Link to="/catalogue?gender=Men">For Him</Link>
         <Link to="/catalogue?gender=Women">For Her</Link>
         <Link to="/body-care">Body Care</Link>
-        <Link to="/mind-freak">Mind Freak</Link>
         <Link to="/visit">Visit Us</Link>
         <button className="btn btn--light" onClick={() => enquire()}>Enquire on WhatsApp</button>
       </nav>
@@ -268,7 +266,7 @@ function Footer() {
               <Link to="/catalogue">Catalogue</Link>
               <Link to="/catalogue?cat=arabian">Arabian perfumery</Link>
               <Link to="/catalogue?cat=niche">Niche houses</Link>
-              <Link to="/mind-freak">Mind Freak, our own brand</Link>
+              <Link to="/brands/mind-freak">Mind Freak, our own brand</Link>
               <Link to="/visit">Visit us</Link>
             </nav>
             <nav aria-label="Popular brands" className="footer__brands">

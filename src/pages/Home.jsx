@@ -5,7 +5,6 @@ import { useEnquiry } from "../lib/EnquiryContext.jsx";
 import ProductMedia from "../components/ProductMedia.jsx";
 import { ProductRow } from "../components/ProductCard.jsx";
 import BrandTile from "../components/BrandTile.jsx";
-import { MF_IMG, MIND_FREAK } from "../data/mindfreak.js";
 import { HowToOrder, PageLoader, RuleTitle, STOREFRONT, TitleBlock, VisitBlock, useTitle } from "../components/Sections.jsx";
 
 const EDIT_TILES = [
@@ -16,48 +15,7 @@ const EDIT_TILES = [
 ];
 
 // Houses featured on the home page, in this order
-const FEATURED = ["dior", "chanel", "tom-ford", "creed", "parfums-de-marly", "xerjoff", "amouage", "maison-francis-kurkdjian", "lattafa", "afnan", "ibraheem-al-qurashi", "khadlaj", "giorgio-armani", "versace"];
-
-// Fragrance Palace's own in-house brand: a teaser that leads to /mind-freak
-function MindFreak({ onEnquire }) {
-  return (
-    <section className="mf" id="mind-freak" aria-labelledby="mf-title">
-      <div className="wrap mf__inner">
-        <div className="mf__copy">
-          <p className="eyebrow mf__eyebrow">Our own brand · Made for Fragrance Palace</p>
-          <h2 className="mf__title" id="mf-title"><span>Mind</span> Freak</h2>
-          <p className="mf__line">The in-house collection · {MIND_FREAK.length} fragrances</p>
-          <p className="mf__text">
-            Mind Freak is our own fragrance house, created by the team behind Fragrance
-            Palace. After years of helping customers find their signature among the world's
-            great perfumes, we made our own.
-          </p>
-          <p className="mf__text">
-            Each fragrance is made to last and to be noticed, and you won't find them
-            anywhere else. They're only available from us.
-          </p>
-          <div className="hero__ctas">
-            <Link className="btn mf__btn" to="/mind-freak">Explore Mind Freak <span aria-hidden="true">›</span></Link>
-            <button className="btn btn--ghost" onClick={onEnquire}>Ask on WhatsApp</button>
-          </div>
-        </div>
-        <ul className="mf__media">
-          {MIND_FREAK.map((p) => (
-            <li className="mf__item" key={p.id}>
-              <Link to={`/mind-freak#${p.id}`} className="mf__link">
-                <span className="mf__card">
-                  <img src={`${MF_IMG}${p.img}`} alt="" loading="lazy" />
-                </span>
-                <span className="mf__name">{p.name}</span>
-                <span className="mf__sub">{p.type} · {p.ml} ml</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
+const FEATURED = ["dior", "chanel", "tom-ford", "creed", "parfums-de-marly", "xerjoff", "amouage", "maison-francis-kurkdjian", "lattafa", "afnan", "mind-freak", "ibraheem-al-qurashi", "khadlaj", "giorgio-armani", "versace"];
 
 export default function Home() {
   useTitle("");
@@ -121,8 +79,6 @@ export default function Home() {
               </div>
             </div>
           </section>
-
-          <MindFreak onEnquire={() => enquire({ brand: "the Mind Freak", name: "collection" })} />
 
           <section className="section section--tint">
             <div className="wrap">
